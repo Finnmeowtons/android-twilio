@@ -7,6 +7,9 @@ plugins {
 android {
     namespace = "com.marasigan.kenth.block6.p1.mangareader"
     compileSdk = 34
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.marasigan.kenth.block6.p1.mangareader"
