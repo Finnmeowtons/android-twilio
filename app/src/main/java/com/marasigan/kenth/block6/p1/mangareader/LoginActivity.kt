@@ -56,31 +56,36 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.usernameLogin.text.toString().trim()
         val password = binding.passwordLogin.text.toString().trim()
 
-        database.child(username).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val user = snapshot.getValue(HelperClass::class.java)
-                    if (user != null && user.password == password) {
-                        Intent(this@LoginActivity, MainActivity::class.java).apply {
-                            putExtra("email", user.email)
-                            putExtra("username", user.username)
-                            putExtra("password", user.password)
-                            startActivity(this)
+        database.orderByChild("username").equalTo(username)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (userSnapshot in snapshot.children) {
+                            val user = userSnapshot.getValue(HelperClass::class.java)
+                            if (user != null && user.password == password) {
+                                Intent(this@LoginActivity, MainActivity::class.java).apply {
+                                    putExtra("userId", user.userId)  // Use unique ID for future references
+                                    putExtra("email", user.email)
+                                    putExtra("username", user.username)
+                                    putExtra("password", user.password)
+                                    startActivity(this)
+                                }
+                                finish()
+                                return
+                            }
                         }
-                        finish()
-                    } else {
                         binding.passwordLogin.error = "Invalid Credentials"
                         binding.passwordLogin.requestFocus()
+                    } else {
+                        binding.usernameLogin.error = "User does not exist"
+                        binding.usernameLogin.requestFocus()
                     }
-                } else {
-                    binding.usernameLogin.error = "User does not exist"
-                    binding.usernameLogin.requestFocus()
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@LoginActivity, "Database Error: ${error.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@LoginActivity, "Database Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
+
 }

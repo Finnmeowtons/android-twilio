@@ -41,8 +41,13 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        val user = HelperClass(username, email, password)
-        reference.child(username).setValue(user).addOnSuccessListener {
+        // Generate a unique key for the user
+        val userId = reference.push().key ?: return
+
+        val user = HelperClass(userId, username, email, password)
+
+        // Save user data under unique ID instead of username
+        reference.child(userId).setValue(user).addOnSuccessListener {
             Toast.makeText(this, "Signup Successful!", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
@@ -50,4 +55,5 @@ class SignupActivity : AppCompatActivity() {
             Toast.makeText(this, "Signup Failed: ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
