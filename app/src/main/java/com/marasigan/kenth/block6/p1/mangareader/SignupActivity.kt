@@ -16,15 +16,6 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        database = FirebaseDatabase.getInstance()
-//        reference = database.getReference("test_connection")
-//        reference.setValue("Connected").addOnCompleteListener { task ->
-//            if (task.isSuccessful) {
-//                Toast.makeText(this, "Firebase is connected!", Toast.LENGTH_SHORT).show()
-//            } else {
-//                Toast.makeText(this, "Firebase connection failed!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
