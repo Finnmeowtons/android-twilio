@@ -3,6 +3,7 @@
     <style name="Base.Theme.MangaReader" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/green</item>
+        <item name="android:statusBarColor">@color/green</item>
     </style>
 
     <style name="Theme.MangaReader" parent="Base.Theme.MangaReader" />
