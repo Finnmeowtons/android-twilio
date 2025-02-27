@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56400206285",
+    "project_id": "manga-reader-ite-401",
+    "storage_bucket": "manga-reader-ite-401.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56400206285:android:dd645f9b3c521c1d2d0c84",
+        "android_client_info": {
+          "package_name": "com.marasigan.kenth.block6.p1.mangareader"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBinX5iiXKq0q3t2jZvVfvXFLVQ5dsdbOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
