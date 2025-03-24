@@ -63,10 +63,11 @@ class LoginActivity : AppCompatActivity() {
                         for (userSnapshot in snapshot.children) {
                             val user = userSnapshot.getValue(HelperClass::class.java)
                             if (user != null && user.password == password) {
-                                Intent(this@LoginActivity, MainActivity::class.java).apply {
+                                Intent(this@LoginActivity, SmsFactorAuthenticationActivity::class.java).apply {
                                     putExtra("userId", user.userId)  // Use unique ID for future references
                                     putExtra("email", user.email)
                                     putExtra("username", user.username)
+                                    putExtra("phone", user.phone)
                                     putExtra("password", user.password)
                                     startActivity(this)
                                 }

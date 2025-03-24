@@ -34,9 +34,10 @@ class SignupActivity : AppCompatActivity() {
 
         val username = binding.usernameSignup.text.toString().trim()
         val email = binding.emailSignup.text.toString().trim()
+        val phone = binding.phoneNumberSignup.text.toString().trim()
         val password = binding.passwordSignup.text.toString().trim()
 
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
@@ -44,7 +45,7 @@ class SignupActivity : AppCompatActivity() {
         // Generate a unique key for the user
         val userId = reference.push().key ?: return
 
-        val user = HelperClass(userId, username, email, password)
+        val user = HelperClass(userId, username, phone, email, password)
 
         // Save user data under unique ID instead of username
         reference.child(userId).setValue(user).addOnSuccessListener {
