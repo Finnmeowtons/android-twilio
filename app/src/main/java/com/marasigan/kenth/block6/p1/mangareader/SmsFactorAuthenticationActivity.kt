@@ -18,6 +18,8 @@ import com.marasigan.kenth.block6.p1.mangareader.service.TwilioApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.os.Handler
+import android.os.Looper
 
 class SmsFactorAuthenticationActivity : AppCompatActivity() {
 
@@ -54,8 +56,9 @@ class SmsFactorAuthenticationActivity : AppCompatActivity() {
         val otp = (1000..9999).random().toString()
         Log.e("MyTag", "$otp, $formattedPhone")
 
-        sendSms(formattedPhone, otp)
-        // Initialize API Service using RetrofitClient
+        Handler(Looper.getMainLooper()).postDelayed({
+            sendSms(formattedPhone, otp)
+        }, 3000)
 
         binding.tvGoBack.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -68,7 +71,11 @@ class SmsFactorAuthenticationActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (editTextOtp == otp) {
+                Toast.makeText(this, "OTP Verified", Toast.LENGTH_SHORT).show()
 
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
     }
 
@@ -88,13 +95,16 @@ class SmsFactorAuthenticationActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@SmsFactorAuthenticationActivity, "OTP Sent Successfully!", Toast.LENGTH_SHORT).show()
+                    Log.e("MyTag", "SUCCESS")
                 } else {
                     Toast.makeText(this@SmsFactorAuthenticationActivity, "Failed to send OTP: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Log.e("MyTag", "FAILED")
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(this@SmsFactorAuthenticationActivity, "Error: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+                Log.e("MyTag", "ERROR, ${t.localizedMessage}")
             }
         })
     }

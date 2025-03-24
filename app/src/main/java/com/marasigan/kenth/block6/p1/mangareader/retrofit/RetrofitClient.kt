@@ -7,9 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "https://api.twilio.com/"
-    private const val ACCOUNT_SID = "ACee01cbcad5140d92814fac7801648115"
-    private const val AUTH_TOKEN = "34f775b6ee5a89615e1c515cec533f83"
+    private const val BASE_URL = "http://192.168.68.104:3000/"
+    private const val ACCOUNT_SID = "ACddd5d9ba010b2bcbc2c9c64c47c1e3c8"
+    private const val AUTH_TOKEN = "3f0abab6eb137944d29fe1d26e56db9a"
 
     private val okHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
         val request = chain.request().newBuilder()
