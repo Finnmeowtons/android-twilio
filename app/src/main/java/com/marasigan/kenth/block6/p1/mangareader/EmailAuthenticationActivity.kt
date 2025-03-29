@@ -1,5 +1,6 @@
 package com.marasigan.kenth.block6.p1.mangareader
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -37,7 +38,7 @@ class EmailAuthenticationActivity : AppCompatActivity() {
         }
 
         val userId = intent.getStringExtra("userId")
-        val email = intent.getStringExtra("email")
+        val email = intent.getStringExtra("email").toString()
         val username = intent.getStringExtra("username")
         val phone = intent.getStringExtra("phone")
         val password = intent.getStringExtra("password")
@@ -49,11 +50,28 @@ class EmailAuthenticationActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("users")
 
         val otp = (1000..9999).random().toString()
-        Log.e("Mytag", "$otp, $email" )
+        Log.e("Mytag", "$otp, $email")
 
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            send
-//        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            sendEmail(email, otp)
+        }, 3000)
+
+        binding.tvGoBack.setOnClickListener {
+        startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        binding.btnSubmit.setOnClickListener{
+            val editTextOtp = binding.etOtp.text.toString()
+            if (editTextOtp.isEmpty()){
+                Toast.makeText(this, "Enter OTP", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (editTextOtp == otp){
+                Toast.makeText(this, "OTP Verified", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+        }
+
     }
 
     private fun sendEmail(userEmail: String, otp: String){

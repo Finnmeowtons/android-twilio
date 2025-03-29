@@ -17,6 +17,8 @@
         <activity
             android:name=".SmsFactorAuthenticationActivity"
             android:exported="false" />
+        <activity android:name=".EmailAuthenticationActivity"
+            android:exported="false"/>
         <activity
             android:name=".FavoritesActivity"
             android:exported="false" />

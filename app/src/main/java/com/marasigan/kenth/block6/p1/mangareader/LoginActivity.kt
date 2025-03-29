@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                             if (user != null && user.password == password) {
                                 showOtpSelectionDialogue(user)
                             }
+                            return
                         }
                         binding.passwordLogin.error = "Invalid Credentials"
                         binding.passwordLogin.requestFocus()

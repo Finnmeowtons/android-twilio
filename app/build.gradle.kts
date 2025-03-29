@@ -11,6 +11,14 @@ android {
         enable = true
     }
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+
     defaultConfig {
         applicationId = "com.marasigan.kenth.block6.p1.mangareader"
         minSdk = 25
