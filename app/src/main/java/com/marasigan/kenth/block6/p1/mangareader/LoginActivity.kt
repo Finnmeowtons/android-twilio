@@ -83,17 +83,30 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showOtpSelectionDialogue(user: HelperClass){
-        val options = arrayOf("Email", "SMS")
+        val options = arrayOf("Email", "SMS", "Voice")
         AlertDialog.Builder(this)
             .setTitle("Choose OTP Verification Method")
             .setItems(options){_, which ->
                 when(which){
                     0 -> emailAuth(user)
                     1 -> smsAuth(user)
+                    2 -> voiceAuth(user)
                 }
             }
             .setCancelable(true)
             .show()
+    }
+
+    private fun voiceAuth(user: HelperClass){
+        Intent(this@LoginActivity, VoiceAuthenticationActivity::class.java).apply {
+            putExtra("userId", user.userId)
+            putExtra("email", user.email)
+            putExtra("username", user.username)
+            putExtra("phone", user.phone)
+            putExtra("password", user.password)
+            startActivity(this)
+        }
+        finish()
     }
 
     private fun emailAuth(user: HelperClass){

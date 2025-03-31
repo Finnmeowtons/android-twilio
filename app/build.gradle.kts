@@ -48,7 +48,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.converter.gson)
     implementation(libs.retrofit)
@@ -60,6 +59,8 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.material3.android)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

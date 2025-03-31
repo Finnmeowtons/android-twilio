@@ -26,7 +26,6 @@ class SmsFactorAuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySmsFactorAuthenticationBinding
     private lateinit var database: DatabaseReference
 
-
     private lateinit var apiService: TwilioApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {

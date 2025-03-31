@@ -24,7 +24,6 @@ class EmailAuthenticationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEmailAuthenticationBinding
     private lateinit var database: DatabaseReference
-
     private lateinit var apiService: TwilioApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
