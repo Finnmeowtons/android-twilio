@@ -59,6 +59,7 @@ class VoiceAuthenticationActivity : AppCompatActivity() {
             TwilioHelper.verifyOTP(formattedPhone, editTextOtp){success->runOnUiThread{
                 if (success){
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
                 }else{
                     Toast.makeText(this, "Incorrect OTP", Toast.LENGTH_SHORT).show()
                 }
